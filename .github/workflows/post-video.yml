@@ -57,53 +57,107 @@ jobs:
               "\u26d4Fictional Mystery Camera Footage Short! #ai #horror #shortsviral #creepy #mysterious"
           ]
           
-          # Fixed description
-          DESCRIPTION = (
+          # 20 Universal Analog Horror Captions - Rotates randomly
+          CAPTIONS = [
+              # MYSTERIOUS / CRYPTIC STYLE
+              "Found this on an SD card at a thrift store.\nDate stamp says 2:34 AM.\nThe camera was still recording when they found it.",
+              
+              "Why was he running?\nFootage recovered 3 miles from last known location.\nBattery died at 8 seconds.",
+              
+              "Last transmission: 04:43 AM\nSearch team found the camera.\nNever found him.",
+              
+              "EVIDENCE #4762\nLocation: [REDACTED]\nStatus: UNSOLVED\nDo not share this footage.",
+              
+              "Case went cold in 2019.\nThis was the only thing they recovered.\n8 seconds of footage.\nThen nothing.",
+              
+              # FIRST PERSON / JOURNAL STYLE
+              "I shouldn't have gone back there.\nThis was my last recording.\nIf you're seeing this, I didn't make it out.",
+              
+              "To whoever finds this:\nDon't go looking for me.\nDon't go to that place.\nJust delete this.",
+              
+              "I thought it was abandoned.\nI thought I was alone.\nI was wrong about both.",
+              
+              "Something's following me.\nCan't see it clearly.\nCamera keeps cutting out.\nThis might be my last upload.",
+              
+              "Day 3 of exploration.\nFound something I can't explain.\nUploading before my phone dies.\nSend help to coordinates in bio.",
+              
+              # MINIMALIST / ATMOSPHERIC
+              "02:34:19 AM\n[NO AUDIO AFTER 0:07]",
+              
+              "Recorded: Abandoned Church, Rural Virginia\nNever returned.",
+              
+              "What is that standing there?",
+              
+              "It was waiting.",
+              
+              "41°49'32\"N 71°42'11\"W\nDo not investigate.",
+              
+              # DOCUMENTARY / INVESTIGATION STYLE
+              "CASE #2847 - ACTIVE\nSubject: Unknown Entity\nClassification: UNEXPLAINED\nThis footage has been declassified.\nViewer discretion advised.",
+              
+              "Hiker reported missing March 2019.\nBody cam recovered 6 months later.\nAuthorities never released this footage.\nUntil now.",
+              
+              "ARCHIVED FOOTAGE - 2018\nRecovered from corrupted hard drive.\nOriginal investigator: Status Unknown\nMake of this what you will.",
+              
+              "Paranormal Investigation Log #47\nLead Researcher: Dr. [REDACTED]\nTeam never reported back.\nThis is all that remains.",
+              
+              "Local legend says don't go there after midnight.\nHe wanted to prove them wrong.\nThis is the last thing his camera recorded.\nThey never found the body."
+          ]
+          
+          # Fixed description with disclaimer
+          DESCRIPTION_TEMPLATE = (
+              "⚠️ FICTIONAL CONTENT - Created for entertainment\n\n"
+              "{caption}\n\n"
+              "━━━━━━━━━━━━━━━━━━━━━━\n\n"
               "ARCHIVE 47 - UNEXPLAINED FOOTAGE COLLECTION\n\n"
               "Welcome to Archive 47, a collection of mysterious and unsettling footage from unknown origins.\n\n"
-              "\u26a0\ufe0f DISCLAIMER: All content on this channel is FICTIONAL and created for entertainment purposes. "
+              "⚠️ DISCLAIMER: All content on this channel is FICTIONAL and created for entertainment purposes. "
               "These are AI-generated horror short films and creative cinematography experiments designed to evoke "
               "atmosphere and suspense. None of the footage represents real events, locations, or incidents.\n\n"
-              "\U0001F3AC WHAT WE CREATE:\n"
-              "\u2022 Found footage style horror shorts\n"
-              "\u2022 POV atmospheric cinematography\n"
-              "\u2022 Analog horror experiences\n"
-              "\u2022 Creature feature clips\n"
-              "\u2022 Mysterious location explorations\n"
-              "\u2022 Cinematic suspense scenes\n\n"
-              "\U0001F4FC CONTENT STYLE: Inspired by analog horror, found footage films, and atmospheric storytelling. "
+              "🎬 WHAT WE CREATE:\n"
+              "• Found footage style horror shorts\n"
+              "• POV atmospheric cinematography\n"
+              "• Analog horror experiences\n"
+              "• Creature feature clips\n"
+              "• Mysterious location explorations\n"
+              "• Cinematic suspense scenes\n\n"
+              "📼 CONTENT STYLE: Inspired by analog horror, found footage films, and atmospheric storytelling. "
               "Each video is an 8-second glimpse into fictional mysterious scenarios - from deep ocean expeditions "
               "to abandoned locations, space stations to ancient ruins.\n\n"
-              "\U0001F3A8 PRODUCTION: All videos are AI-generated artistic creations combining:\n"
-              "\u2022 Cinematic camera work\n"
-              "\u2022 Atmospheric sound design\n"
-              "\u2022 Horror film aesthetics\n"
-              "\u2022 Creative storytelling\n\n"
-              "\U0001F441\ufe0f FOR FANS OF: Analog horror, found footage films, The Backrooms, SCP Foundation, "
+              "🎨 PRODUCTION: All videos are AI-generated artistic creations combining:\n"
+              "• Cinematic camera work\n"
+              "• Atmospheric sound design\n"
+              "• Horror film aesthetics\n"
+              "• Creative storytelling\n\n"
+              "👁️ FOR FANS OF: Analog horror, found footage films, The Backrooms, SCP Foundation, "
               "creepypasta, atmospheric horror, cinematic shorts, mystery content\n\n"
-              "\U0001F514 New mysterious footage uploaded regularly\n"
-              "\U0001F4AC Share your theories in the comments\n"
-              "\U0001F44D Subscribe for more unexplained cinema\n\n"
+              "🔔 New mysterious footage uploaded regularly\n"
+              "💬 Share your theories in the comments\n"
+              "👍 Subscribe for more unexplained cinema\n\n"
               "REMEMBER: This is creative fiction for horror entertainment. Enjoy responsibly.\n\n"
-              "\U0001F3B5 Sound effects licensed/royalty-free\n"
-              "\U0001F916 AI-assisted content creation\n\n"
+              "🎵 Sound effects licensed/royalty-free\n"
+              "🤖 AI-assisted content creation\n\n"
               "#AnalogHorror #FoundFootage #HorrorShorts #CreativeContent #FictionalFootage #AIGenerated #Shorts"
           )
           
-          # Pick random title
+          # Pick random title and caption
           title = random.choice(TITLES)
+          caption = random.choice(CAPTIONS)
+          description = DESCRIPTION_TEMPLATE.format(caption=caption)
           
           print(f"Uploading with title: {title[:50]}...")
+          print(f"Using caption: {caption[:60]}...")
           
           request = youtube.videos().insert(
               part="snippet,status",
               body={
                   "snippet": {
                       "title": title[:100],
-                      "description": DESCRIPTION,
+                      "description": description,
                       "tags": ["shorts", "analog horror", "found footage", "horror", 
                                "creepy", "ai generated", "fictional", "mysterious",
-                               "scary", "pov horror", "surveillance footage"],
+                               "scary", "pov horror", "surveillance footage", "body cam",
+                               "unexplained", "paranormal", "investigation"],
                       "categoryId": "24"
                   },
                   "status": {
