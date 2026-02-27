@@ -43,18 +43,45 @@ jobs:
           
           youtube = build('youtube', 'v3', credentials=credentials)
           
-          # 10 Random titles
+          # 30 Universal Titles - Based on caption styles
           TITLES = [
-              "\u2620\ufe0fFictional Horror Analog Cam Short! #ai #shortsviral #horror #mysterious #analoghorror",
-              "\U0001F4FCFictional Found Footage Horror Short! #ai #creepy #shortsviral #mysterious #horror",
-              "\u26a0\ufe0fFictional Mystery Analog Camera Short! #ai #scary #shortsviral #analoghorror #creepy",
-              "\U0001F3A5Fictional Horror POV Cam Short! #ai #horror #shortsviral #mysterious #foundfootage",
-              "\U0001F441\ufe0fFictional Creepy Analog Footage Short! #ai #shortsviral #horror #scary #mysterious",
-              "\U0001F534Fictional Mystery Horror Cam Short! #ai #analoghorror #shortsviral #creepy #horror",
-              "\U0001F4F9Fictional Scary Found Footage Short! #ai #horror #shortsviral #mysterious #analoghorror",
-              "\U0001F480Fictional Horror Surveillance Cam Short! #ai #creepy #shortsviral #horror #mysterious",
-              "\U0001F311Fictional Dark Analog Horror Short! #ai #scary #shortsviral #analoghorror #creepy",
-              "\u26d4Fictional Mystery Camera Footage Short! #ai #horror #shortsviral #creepy #mysterious"
+              # MYSTERIOUS / CRYPTIC STYLE (10 titles)
+              "Found Footage - SD Card Recovery #shorts #analoghorror #foundfootage",
+              "Unexplained Camera Footage - 8 Seconds #shorts #horror #mysterious",
+              "Evidence File - Location Unknown #shorts #creepy #investigation",
+              "Cold Case Footage - 2019 #shorts #mystery #unsolved",
+              "Recovered Body Cam - Last Transmission #shorts #horror #bodycam",
+              "Thrift Store Discovery - Warning #shorts #analoghorror #scary",
+              "Missing Person Case - Final Recording #shorts #mystery #footage",
+              "Unsolved Investigation - Declassified #shorts #paranormal #evidence",
+              "Lost Footage Archive - Unknown Origin #shorts #horror #mysterious",
+              "Case File #4762 - Do Not Share #shorts #creepy #redacted",
+              
+              # FIRST PERSON / JOURNAL STYLE (10 titles)
+              "Last Recording - If You Find This #shorts #horror #warning",
+              "My Final Upload - Something Followed Me #shorts #scary #pov",
+              "Day 3 Exploration Log - Send Help #shorts #investigation #lost",
+              "Camera Keeps Cutting Out #shorts #analoghorror #glitch",
+              "I Shouldn't Have Gone Back #shorts #horror #mistake",
+              "Warning - Delete This Footage #shorts #creepy #urgent",
+              "Alone in Abandoned Location #shorts #exploration #horror",
+              "Phone Dying - Uploading Now #shorts #scary #lastwords",
+              "Something Following Me - Can't See It #shorts #horror #stalked",
+              "Wrong About Everything #shorts #mystery #realization",
+              
+              # MINIMALIST / ATMOSPHERIC (5 titles)
+              "02:34 AM - No Audio After 0:07 #shorts #timestamp #horror",
+              "Abandoned Location - Never Returned #shorts #creepy #atmospheric",
+              "What Is That Standing There #shorts #horror #entity",
+              "It Was Waiting #shorts #scary #ominous",
+              "Coordinates - Do Not Investigate #shorts #mystery #warning",
+              
+              # DOCUMENTARY / INVESTIGATION STYLE (5 titles)
+              "Active Case - Unknown Entity #shorts #investigation #paranormal",
+              "Missing Hiker - Body Cam Found #shorts #horror #newsfootage",
+              "Archived Footage - Corrupted Drive #shorts #recovered #mysterious",
+              "Paranormal Investigation - Team Missing #shorts #research #horror",
+              "Urban Legend Proved - Last Recording #shorts #folklore #scary"
           ]
           
           # 20 Universal Analog Horror Captions - Rotates randomly
@@ -145,7 +172,7 @@ jobs:
           caption = random.choice(CAPTIONS)
           description = DESCRIPTION_TEMPLATE.format(caption=caption)
           
-          print(f"Uploading with title: {title[:50]}...")
+          print(f"Uploading with title: {title[:70]}...")
           print(f"Using caption: {caption[:60]}...")
           
           request = youtube.videos().insert(
@@ -157,7 +184,8 @@ jobs:
                       "tags": ["shorts", "analog horror", "found footage", "horror", 
                                "creepy", "ai generated", "fictional", "mysterious",
                                "scary", "pov horror", "surveillance footage", "body cam",
-                               "unexplained", "paranormal", "investigation"],
+                               "unexplained", "paranormal", "investigation", "abandoned",
+                               "urban exploration", "creepypasta", "atmospheric horror"],
                       "categoryId": "24"
                   },
                   "status": {
